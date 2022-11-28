@@ -5,8 +5,8 @@ class Solution {
             return false;
         else
         {
-            while(n>0)
-        {
+            while(n>0)                                           Time Complexity:O(log n to base 10)
+        {                                                        Space complexity : O(1)
             d=n%10;
             s=(10*s)+d;
             n=n/10;
@@ -17,4 +17,15 @@ class Solution {
         return false;
     }
 }
+}
+
+-->using strings
+public boolean isPalindrome(int x) {
+    String str = String.valueOf(x);
+    int start = 0;
+    int end = str.length() - 1;
+    while(start < end){
+        if(str.charAt(start++) != str.charAt(end--)) return false;
+    }
+    return true;
 }
