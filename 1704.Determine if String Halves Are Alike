@@ -1,0 +1,52 @@
+#My soln
+class Solution 
+{
+    public boolean halvesAreAlike(String s) 
+    {
+        String a=s.substring(0,(s.length()/2));
+        String b=s.substring((s.length()/2),s.length());
+        int c1=0,c2=0;
+        for(int i=0;i<a.length();i++)
+        {
+            if(a.charAt(i)=='a'||a.charAt(i)=='e'||a.charAt(i)=='i'||a.charAt(i)=='o'||a.charAt(i)=='u'||a.charAt(i)=='A'||a.charAt(i)=='E'||a.charAt(i)=='I'||a.charAt(i)=='O'||a.charAt(i)=='U')
+            c1+=1;
+        }
+        for(int i=0;i<b.length();i++)
+        {
+            if(b.charAt(i)=='a'||b.charAt(i)=='e'||b.charAt(i)=='i'||b.charAt(i)=='o'||b.charAt(i)=='u'||b.charAt(i)=='A'||b.charAt(i)=='E'||b.charAt(i)=='I'||b.charAt(i)=='O'||b.charAt(i)=='U')
+            c2+=1;
+        }
+        return c1==c2?true:false;
+
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Quickest soln
+
+class Solution {
+    public boolean halvesAreAlike(String s) {
+       char[] ch=s.toCharArray();
+       int len=s.length();
+       int mid=len/2;
+       int l=check(ch,0,mid-1);
+       int r=check(ch,mid,len-1);
+        if(l==r)
+        {
+            return true;
+        }
+        return false;
+        
+    }
+    public int check(char[] ch,int start,int end){
+        int count=0;
+        for(int i=start;i<=end;i++)
+        {
+            if(ch[i]=='a'||ch[i]=='e'||ch[i]=='i'||ch[i]=='o'||ch[i]=='u'||ch[i]=='A'||ch[i]=='E'||ch[i]=='I'||ch[i]=='O'||ch[i]=='U')
+            {
+               count++; 
+            }
+         }
+        return count;
+    }
+}
