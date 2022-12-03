@@ -1,3 +1,4 @@
+//Two pass hash table
 class Solution 
 {
     public int[] twoSum(int[] nums, int target)
@@ -23,3 +24,22 @@ Time complexity:O(n)
 We traverse the list containing n elements exactly twice. Since the hash table reduces the lookup time to O(1), the overall time complexity is O(n).
 Space complexity:O(n)
 The extra space required depends on the number of items stored in the hash table, which stores exactly n elements.
+
+//One pass hash table
+class Solution 
+{
+    public int[] twoSum(int[] nums, int target) 
+    {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) 
+        {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) 
+            {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(nums[i], i);
+        }
+        return null;
+    }
+}
