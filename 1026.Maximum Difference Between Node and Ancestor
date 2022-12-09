@@ -37,3 +37,24 @@ Let N be the number of nodes in the binary tree.
 Time complexity: O(N) since we visit all nodes once.
 Space complexity: O(N) since we need stacks to do recursion, and the maximum depth of the recursion is the height of the tree,
 which is O(N) in the worst case and O(log⁡(N)) in the best case.
+
+----------------------------------------------------------------------------------------------------------------------------
+class Solution {
+    public int maxAncestorDiff(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return helper(root, root.val, root.val);
+    }
+
+    public int helper(TreeNode node, int curMax, int curMin) {
+        if (node == null) {
+            return curMax - curMin;
+        }
+        curMax = Math.max(curMax, node.val);
+        curMin = Math.min(curMin, node.val);
+        int left = helper(node.left, curMax, curMin);
+        int right = helper(node.right, curMax, curMin);
+        return Math.max(left, right);
+    }
+}
