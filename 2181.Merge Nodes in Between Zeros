@@ -1,0 +1,27 @@
+class Solution {
+    public ListNode mergeNodes(ListNode head) {
+        ListNode zero=head;
+        ListNode p=head.next;
+        while(p!=null)
+        {
+            if(p.val!=0)
+            {
+                zero.val+=p.val;
+            }
+            else
+            { 
+                if(p.next==null) 
+                {
+                    zero.next=null;
+                }
+                else 
+                {
+                    zero.next=p;
+                }
+                zero=p;
+            }
+            p=p.next;
+        }
+        return head;
+    }
+}
