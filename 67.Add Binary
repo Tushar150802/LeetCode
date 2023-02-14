@@ -27,3 +27,5 @@ class Solution {
         return sb.reverse().toString();
     }
 }
+O(max(m,n))
+O(max(m,n))
