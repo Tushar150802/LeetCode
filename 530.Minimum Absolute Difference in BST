@@ -1,0 +1,21 @@
+class Solution {
+    List<Integer> dummy = new ArrayList<>();
+    void inorderTraversal(TreeNode root) 
+    {
+        if (root == null) {
+            return;
+        }
+        inorderTraversal(root.left);
+        dummy.add(root.val);
+        inorderTraversal(root.right);
+    }
+    public int getMinimumDifference(TreeNode root) 
+    {
+        inorderTraversal(root);
+        int minDistance = Integer.MAX_VALUE;
+        for (int i = 1; i < dummy.size(); i++) {
+            minDistance = Math.min(minDistance, dummy.get(i) - dummy.get(i-1));
+        }
+        return minDistance;
+    }
+}
