@@ -1,0 +1,42 @@
+class Solution {
+    List<Integer> dummy = new ArrayList<>();
+    void inorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inorderTraversal(root.left);
+        dummy.add(root.val);
+        inorderTraversal(root.right);
+    }
+    public int minDiffInBST(TreeNode root) {
+        inorderTraversal(root);
+        int minDistance = Integer.MAX_VALUE;
+        for (int i = 1; i < dummy.size(); i++) {
+            minDistance = Math.min(minDistance, dummy.get(i) - dummy.get(i-1));
+        }
+        return minDistance;
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------
+
+class Solution {
+  int minDistance = Integer.MAX_VALUE;
+  TreeNode prevValue;
+  void inorderTraversal(TreeNode root) {
+    if (root == null) {
+      return;
+    }
+    inorderTraversal(root.left);
+    if (prevValue != null) {
+      minDistance = Math.min(minDistance, root.val - prevValue.val);
+    }
+    prevValue = root;
+    inorderTraversal(root.right);
+  }
+  public int minDiffInBST(TreeNode root) {
+    inorderTraversal(root);
+
+    return minDistance;
+  }
+}
