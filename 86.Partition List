@@ -1,0 +1,29 @@
+class Solution {
+    public ListNode partition(ListNode head, int x) {
+        ListNode before_head = new ListNode(0);
+        ListNode before = before_head;
+        ListNode after_head = new ListNode(0);
+        ListNode after = after_head;
+        while (head != null) {
+            if (head.val < x) {
+                before.next = head;
+                before = before.next;
+            } else {
+                after.next = head;
+                after = after.next;
+            }
+            head = head.next;
+        }
+        after.next = null;
+        before.next = after_head.next;
+        return before_head.next;
+    }
+}
+
+Time Complexity:O(N)
+Space Complexity:O(1)
+
+ Since we traverse the original linked list from left to right, at no point would the order of nodes change relatively in the two lists.
+ Another important thing to note here is that we show the original linked list intact in the above diagrams. 
+ However, in the implementation, we remove the nodes from the original linked list and attach them in the before or after list. 
+ We don't utilize any additional space. We simply move the nodes from the original list around.
