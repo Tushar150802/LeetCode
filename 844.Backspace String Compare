@@ -1,0 +1,63 @@
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        Stack<Character> stack1=new Stack<>();
+        Stack<Character> stack2=new Stack<>();
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)!='#')
+            {
+                stack1.push(s.charAt(i));
+            }
+            else if(!stack1.isEmpty())
+            {
+                stack1.pop();
+            }
+        }
+        for(int j=0;j<t.length();j++)
+        {
+            if(t.charAt(j)!='#')
+            {
+                stack2.push(t.charAt(j));
+            }
+            else if(!stack2.isEmpty())
+            {
+                stack2.pop();
+            }
+        }
+        StringBuilder res1=new StringBuilder();
+        StringBuilder res2=new StringBuilder();
+        String r1="",r2="";
+        while(!stack1.isEmpty())
+        {
+            res1.append(stack1.pop());
+        }
+        while(!stack2.isEmpty())
+        {
+            res2.append(stack2.pop());
+        }   
+        r1=res1.reverse().toString();
+        r2=res2.reverse().toString();
+        return r1.equals(r2);
+    }
+}
+----------------
+class Solution {
+    public boolean backspaceCompare(String S, String T) {
+        return build(S).equals(build(T));
+    }
+
+    public String build(String S) {
+        Stack<Character> ans = new Stack();
+        for (char c: S.toCharArray()) {
+            if (c != '#')
+                ans.push(c);
+            else if (!ans.empty())
+                ans.pop();
+        }
+        return String.valueOf(ans);
+    }
+}
+
+
+        
+ 
