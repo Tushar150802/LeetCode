@@ -1,0 +1,20 @@
+class Solution {
+    public String simplifyPath(String path) {
+        Stack<String> stack=new Stack();
+        String[] words=path.split("/");
+        for(String t:words)
+        {
+            if(!stack.isEmpty() && "..".equals(t))
+                stack.pop();
+            else if(stack.isEmpty() && "..".equals(t))
+                continue;
+            else if(!t.equals(".")&&!t.equals(""))
+                stack.push(t);
+        }
+        StringBuilder ans=new StringBuilder();
+        for(String s:stack){
+            ans.append("/").append(s);
+        }
+        return ans.length()==0?"/":ans.toString();
+    }
+}
