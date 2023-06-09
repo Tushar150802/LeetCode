@@ -1,0 +1,39 @@
+//Two pass solution
+//Finding the maximum element and minimum element->counting the number of elements which lie between min and max element
+class Solution {
+    public int countElements(int[] nums) {
+        int minEle=Integer.MAX_VALUE;
+        int maxEle=Integer.MIN_VALUE;
+        for(int num:nums)
+        {
+            minEle=Math.min(minEle,num);
+            maxEle=Math.max(maxEle,num);
+        }
+        int count=0;
+        for(int num:nums)
+        {
+            if(num>minEle && num<maxEle)
+                count++;
+        }
+        return count;           
+    }
+}
+Time Complexity:O(N)
+Space Complexity:O(1)
+
+--------------------------------------------------------------------------------------------------------------------
+//One Pass but with sorting
+class Solution {
+    public int countElements(int[] nums) {
+        Arrays.sort(nums);
+        int count_start=0,count_end=0;
+        int a=nums[0];
+        int b=nums[nums.length-1];
+        for(int num:nums)
+        {
+            if(num==a)  count_start++;
+            else if(num==b) count_end++;
+        }
+        return nums.length-(count_start+count_end);
+    }
+}
